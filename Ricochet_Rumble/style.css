@@ -1,0 +1,218 @@
+body {
+  margin: 0;
+  height: 100%;
+  min-width: 100vw;
+  overflow-x: hidden;
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gamearea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 30px;
+}
+
+#gameboard {
+  display: grid;
+  grid-template-columns: repeat(8, 70px);
+  grid-template-rows: repeat(8, 70px);
+  gap: 2px;
+  background: #333;
+  border: 5px solid #555;
+}
+
+/* Available move square styling */
+.possible-move {
+  background-color: rgba(0, 255, 0, 0.4) !important;
+  border: 2px solid limegreen !important;
+  position: relative;
+  z-index: 100;
+}
+
+/* Square styling */
+.square {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #999;
+  font-size: 12px;
+  position: relative;
+}
+
+/* Piece styling */
+.piece {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Color and basic identifiers */
+.red   { color: red; }
+.blue  { color: blue; }
+.titan { background-color: darkgoldenrod; }
+.cannon { background-color: gray; }
+
+/* Ricochet and Semi-Ricochet styling */
+.ricochet,
+.semiricochet {
+  background-size: cover;
+  cursor: pointer;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+/* Titan and Cannon images updated to scale within grid cells */
+#redTitan,
+#blueTitan {
+  background-image: url(images/titan.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#redCannon,
+#blueCannon {
+  background-image: url(images/cannon.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* Border colors for cannons */
+#redCannon { border-color: red; }
+#blueCannon { border-color: blue; }
+
+/* Ricochet background images */
+#redricochet {
+  background-image: url(images/ricochet_red_transparent.png);
+}
+
+#bluericochet {
+  background-image: url(images/ricochet_blue_transparent.png);
+}
+
+#redsemiricochet {
+  background-image: url(images/semi_ricochet_red.png);
+}
+
+#bluesemiricochet {
+  background-image: url(images/semi_ricochet_blue.png);
+}
+
+/* Bullet styling */
+.bullet {
+  width: 50px;
+  height: 20px;
+  background-image: url(images/bullet.png);
+  background-size: cover;
+  position: absolute;
+}
+
+/* Timer and button container styling */
+#control-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15px;
+}
+
+#timers {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#red-timer,
+#blue-timer {
+  margin: 0 10px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Rotate button hidden state */
+#rotate-button {
+  display: none;
+}
+
+.ricochet:active ~ #rotate-button,
+.semiricochet:active ~ #rotate-button {
+  display: block;
+}
+
+/* Button styling */
+button {
+  padding: 12px 18px;
+  border: none;
+  background: #0078d4;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;
+  width: 100%;
+}
+
+button:hover {
+  background: #005a9e;
+}
+
+/* Play/Pause button styling */
+#play_pause {
+  width: 100px;
+  height: 40px;
+  background: url("images/pause-play-button.png") no-repeat center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#play_pause:hover {
+  background-color: #ddd;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  #gamearea {
+    flex-direction: column;
+    align-items: center;
+  }
+  #control-panel {
+    align-items: center;
+    width: 100%;
+  }
+  #timers {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #button-container {
+    align-items: center;
+    width: auto;
+  }
+}
